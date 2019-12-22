@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,4 +25,4 @@ $router->get(
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+$router->get('/home', 'HomeController@index')->name('home');
