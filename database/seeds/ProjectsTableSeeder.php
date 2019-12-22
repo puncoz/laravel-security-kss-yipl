@@ -1,8 +1,9 @@
 <?php
 
+use App\Project;
 use Illuminate\Database\Seeder;
 
-class CompaniesTableSeeder extends Seeder
+class ProjectsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,6 +12,6 @@ class CompaniesTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\App\Company::class, rand(10, 20))->create();
+        factory(Project::class, rand(10, 20))->create();
     }
 }

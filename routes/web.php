@@ -23,6 +23,9 @@ $router->get(
     }
 );
 
+$router->get('/projects', 'ProjectsController@index')->name('projects');
+$router->get('/projects/{project_id}', 'ProjectsController@show')->name('projects.show');
+
 Auth::routes();
 
 $router->get('/home', 'HomeController@index')->name('home');
