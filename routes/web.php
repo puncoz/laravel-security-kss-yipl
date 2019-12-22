@@ -26,6 +26,20 @@ $router->get(
 $router->get('/projects', 'ProjectsController@index')->name('projects');
 $router->get('/projects/{project_id}', 'ProjectsController@show')->name('projects.show');
 
+$router->get('/contact-us', 'MessagesController@form')->name('contact-us');
+$router->post('/contact-us', 'MessagesController@store')->name('contact-us.store');
+
 Auth::routes();
 
-$router->get('/home', 'HomeController@index')->name('home');
+$router->group(
+    [
+        'middleware' => 'auth',
+    ],
+    function () use ($router) {
+        $router->get('/home', 'HomeController@index')->name('home');
+
+        $router->get('/messages', 'MessagesController@index')->name('messages');
+        $router->get('/messages/{message_id}', 'MessagesController@show')->name('messages.show');
+    }
+);
+

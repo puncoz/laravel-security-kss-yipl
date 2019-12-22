@@ -7,22 +7,30 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ProjectsController extends Controller
 {
+    /**
+     * @var Builder
+     */
+    protected $projectModel;
+
+    public function __construct(Project $project)
+    {
+        $this->projectModel = $project;
+    }
+
     public function index()
     {
-        /** @var Builder $projectModel */
-        $projectModel = app(Project::class);
         if ( request()->has('sort') ) {
-            $projectModel = $projectModel->orderBy(request()->input('sort'), 'asc');
+            $projectModel = $this->projectModel->orderBy(request()->input('sort'), 'asc');
         }
 
-        $projects = $projectModel->get();
+        $projects = $this->projectModel->get();
 
         return view("projects.index", compact('projects'));
     }
 
     public function show($projectId)
     {
-        $project = Project::find($projectId);
+        $project = $this->projectModel->find($projectId);
 
         return view('projects.show', compact('project'));
     }

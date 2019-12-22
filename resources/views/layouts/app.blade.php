@@ -36,6 +36,9 @@
                     <li class="nav-lint">
                         <a href="{{ route('projects') }}" class="nav-link">Projects</a>
                     </li>
+                    <li class="nav-lint">
+                        <a href="{{ route('contact-us') }}" class="nav-link">Contact Us</a>
+                    </li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->
@@ -55,6 +58,8 @@
                             </a>
 
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                <a href="{{ route('messages') }}" class="dropdown-item">Messages</a>
+
                                 <a class="dropdown-item"
                                    href="{{ route('logout') }}"
                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

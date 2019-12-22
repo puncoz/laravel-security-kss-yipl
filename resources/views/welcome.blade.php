@@ -81,6 +81,7 @@
 
         <div class="links">
             <a href="{{ route('projects') }}">Projects</a>
+            <a href="{{ route('contact-us') }}">Contact Us</a>
         </div>
     </div>
 </div>
