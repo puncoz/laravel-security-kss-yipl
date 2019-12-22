@@ -20,7 +20,7 @@ class MessagesController extends Controller
 
     public function index()
     {
-        $messages = $this->messageModel->get();
+        $messages = $this->messageModel->orderByDesc('created_at')->get();
 
         return view('contact-us.index', compact('messages'));
     }
