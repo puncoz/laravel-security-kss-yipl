@@ -19,8 +19,10 @@ class ProjectsController extends Controller
 
     public function index()
     {
-        if ( request()->has('sort') ) {
-            $this->projectModel = $this->projectModel->orderBy(request()->input('sort'), 'asc');
+        $sortBy = request()->get('sort');
+        if ( $sortBy ) {
+            $this->projectModel = $this->projectModel->orderByRaw("{$sortBy} asc");
+//            $this->projectModel = $this->projectModel->orderBy(request()->input('sort'), 'asc');
         }
 
         $projects = $this->projectModel->get();
