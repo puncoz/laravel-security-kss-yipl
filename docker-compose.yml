@@ -1,0 +1,21 @@
+version: "3.7"
+
+services:
+  app:
+    container_name: laravel-kss
+    build:
+      context: ./
+      dockerfile: docker/app.docker
+    ports:
+      - 8081:80
+    volumes:
+      - .:/app:cached
+
+  database:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: p
+      POSTGRES_DB: laravel-kss
+
