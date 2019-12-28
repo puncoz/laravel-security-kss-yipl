@@ -15,9 +15,12 @@ use Illuminate\Notifications\Notifiable;
  * @property string      $name
  * @property Carbon|null $email_verified_at
  * @property string      $password
+ * @property string      $display_picture
  * @property string      $remember_token
  * @property Carbon      $created_at
  * @property Carbon      $updated_at
+ *
+ * @property string      $display_picture_url
  */
 class User extends Authenticatable
 {
@@ -32,6 +35,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'display_picture',
     ];
 
     /**
@@ -52,4 +56,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function getDisplayPictureUrlAttribute()
+    {
+        $displayPicture = $this->display_picture;
+
+        try {
+            if ( !$displayPicture ) {
+                throw new \Exception("Display picture not set.");
+            }
+
+            if ( !is_file(public_path("uploads/{$displayPicture}")) ) {
+                throw new \Exception("File not found!");
+            }
+
+            return asset("uploads/{$displayPicture}");
+        } catch (\Exception $exception) {
+            return asset("defaults/user.png");
+        }
+    }
 }
