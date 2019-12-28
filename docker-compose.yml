@@ -20,4 +20,3 @@ services:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: p
       POSTGRES_DB: laravel-kss
-

@@ -2,10 +2,12 @@ FROM ubuntu:18.04
 
 ARG USER_ID=1000
 ARG GROUP_ID=985
-RUN userdel -f www-data &&\
-    if getent group www-data ; then groupdel www-data; fi &&\
-    groupadd -g ${GROUP_ID} www-data &&\
-    useradd -l -u ${USER_ID} -g www-data www-data
+#RUN userdel -f www-data &&\
+#    if getent group www-data ; then groupdel www-data; fi &&\
+#    groupadd -g ${GROUP_ID} www-data &&\
+#    useradd -l -u ${USER_ID} -g www-data www-data
+RUN usermod -u ${USER_ID} www-data &&\
+    groupmod -g ${GROUP_ID} www-data
 
 WORKDIR /app
 
